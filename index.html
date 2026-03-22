@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Really Sorry, Bestie... 💔→💗 - From Shobit</title>
+    <title>I'm Really Sorry, 🥲🥲... 💔→💗</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -19,257 +19,224 @@
         * { box-sizing: border-box; }
         body {
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255,105,180,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(224,176,126,0.1) 0%, transparent 50%),
-                radial-gradient(circle at top, #2a0b3d 0%, #000 70%);
+                radial-gradient(circle at 20% 80%, rgba(255,105,180,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(224,176,126,0.15) 0%, transparent 50%),
+                #1a0b2e; /* Optimized background */
             font-family: 'Cormorant Garamond', serif;
             color: var(--text);
             overflow: hidden; margin: 0; user-select: none;
-            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* FIXED TOP FOLLOW TAG */
+        #follow { 
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--soft-pink);
+            text-shadow: 0 0 12px rgba(255, 105, 180, 0.8), 0 2px 4px rgba(0,0,0,0.8);
+            white-space: nowrap;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        /* SLIDE LOGIC */
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+            text-align: center; padding: 20px;
+            will-change: opacity;
+        }
+        .slide.active { opacity: 1; pointer-events: all; z-index: 50; }
         
-        /* TEXT ANIMATIONS */
+        /* TEXT ANIMATIONS & CLEAR ROMANTIC COLORS */
         h1, h2 { 
             font-family: 'Playfair Display', serif; font-weight: 900; 
             font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.1;
-            text-shadow: 0 3px 15px rgba(0,0,0,0.9), 0 0 25px rgba(255,255,255,0.15);
-            letter-spacing: -0.02em; position: relative;
+            /* Glowing romantic text effect */
+            background: linear-gradient(45deg, var(--soft-pink), var(--rose-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            margin-bottom: 20px;
         }
-        h1::before {
-            content: ''; position: absolute; bottom: -10px; left: 50%;
-            width: 0; height: 3px; background: linear-gradient(90deg, var(--rose-gold), var(--heart-glow));
-            transform: translateX(-50%); transition: width 0.8s ease;
-        }
-        .slide.active h1::before { width: 80%; animation: glowLine 2s ease-in-out infinite; }
-        @keyframes glowLine {
-            0%, 100% { box-shadow: 0 0 5px var(--rose-gold); }
-            50% { box-shadow: 0 0 20px var(--rose-gold), 0 0 40px var(--heart-glow); }
-        }
-
+        
         p { 
-            font-size: clamp(1.1rem, 3vw, 1.6rem); line-height: 1.7; 
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem); line-height: 1.7; 
             max-width: 750px; margin: 0 auto 1.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-            opacity: 0; transform: translateY(30px); transition: all 1s ease;
+            color: var(--soft-pink);
+            font-weight: 600;
+            /* Strong dark shadow for crystal clear reading */
+            text-shadow: 0 3px 6px rgba(0,0,0,0.9), 0 0 10px rgba(255, 105, 180, 0.4);
+            opacity: 0; transform: translateY(20px); transition: all 1s ease;
         }
         .slide.active p { opacity: 1; transform: translateY(0); }
 
-        .signature { 
-            font-family: 'Dancing Script', cursive; 
-            color: var(--rose-gold); font-size: clamp(3.2rem, 8vw, 5.5rem);
-            text-shadow: 0 0 40px rgba(224,176,126,0.9);
-            animation: signatureFloat 4s ease-in-out infinite;
-        }
-        @keyframes signatureFloat {
-            0%, 100% { transform: translateY(0) rotate(-1deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
-
-        /* ENHANCED BUTTONS */
+        /* BUTTONS */
         .lux-btn {
             position: relative; overflow: hidden;
-            background: linear-gradient(135deg, var(--rose-gold), #d4a373);
-            color: #1a001f; padding: 1.4rem 3.5rem; border-radius: 50px;
-            font-weight: 700; font-size: 1.3rem; letter-spacing: 1px;
-            box-shadow: 0 15px 50px rgba(224,176,126,0.6);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid transparent;
-            backdrop-filter: blur(15px);
+            background: linear-gradient(135deg, var(--rose-gold), #ff8da1);
+            color: #1a001f; padding: 1rem 2.5rem; border-radius: 50px;
+            font-weight: 700; font-size: 1.2rem; cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid rgba(255,255,255,0.3); outline: none; margin: 10px;
+            will-change: transform;
         }
-        .lux-btn::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
-        }
-        .lux-btn:hover::before { left: 100%; }
         .lux-btn:hover { 
-            transform: scale(1.08) translateY(-6px) rotateX(5deg); 
-            box-shadow: 0 30px 80px rgba(224,176,126,0.8);
-            border-color: rgba(255,255,255,0.3);
+            transform: scale(1.05) translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
         }
 
-        /* ALL EXISTING STYLES + NEW ONES */
-        .slide { /* same as before */ }
-        .gif-frame { /* same + */ animation: pulseGlow 3s ease-in-out infinite; }
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 60px rgba(224,176,126,0.6), 0 0 100px rgba(255,105,180,0.2); }
-            50% { box-shadow: 0 0 80px rgba(224,176,126,0.9), 0 0 140px rgba(255,105,180,0.4); }
-        }
-
-        /* NEW HEART RAIN */
-        .heart-rain { position: fixed; font-size: 1.5rem; pointer-events: none; z-index: 5; }
-        @keyframes heartRain {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* FIREWORKS */
+        /* OPTIMIZED PARTICLES & ANIMATIONS */
+        .heart-rain, .love-wave, .float-emoji { position: fixed; pointer-events: none; will-change: transform, opacity; }
+        .heart-rain { font-size: 1.2rem; z-index: 5; animation: heartRain linear forwards; }
+        .love-wave { font-size: 2.5rem; z-index: 8; animation: loveWave linear forwards; }
+        .float-emoji { font-size: 2rem; z-index: 12; animation: floatUp ease-in-out forwards; }
+        .magic-sparkle { position: fixed; width: 6px; height: 6px; background: var(--sparkle-gold); border-radius: 50%; pointer-events: none; z-index: 15; box-shadow: 0 0 8px var(--sparkle-gold); }
         .firework { position: fixed; pointer-events: none; z-index: 20; }
-        .firework-explosion { position: absolute; width: 4px; height: 4px; background: var(--sparkle-gold); border-radius: 50%; }
-        @keyframes explode {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
-        }
+        .firework-explosion { position: absolute; width: 5px; height: 5px; border-radius: 50%; }
 
-        /* MAGIC SPARKLES */
-        .magic-sparkle {
-            position: fixed; width: 6px; height: 6px; background: radial-gradient(circle, var(--sparkle-gold), transparent);
-            border-radius: 50%; pointer-events: none; z-index: 15;
-        }
-        @keyframes sparkleMagic {
-            0% { transform: scale(0) rotate(0deg); opacity: 0; }
-            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-            100% { transform: scale(0) rotate(360deg); opacity: 0; }
-        }
-
-        /* LOVE WAVES */
-        .love-wave {
-            position: fixed; font-size: 3rem; pointer-events: none; z-index: 8;
-            filter: drop-shadow(0 0 20px var(--heart-glow));
+        @keyframes heartRain {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
         @keyframes loveWave {
-            0% { transform: translateX(-150vw) scale(0.5); opacity: 0; }
-            20% { opacity: 1; transform: scale(1); }
-            80% { opacity: 1; transform: scale(1.2); }
-            100% { transform: translateX(150vw) scale(0.5); opacity: 0; }
-        }
-
-        /* FLOATING EMOJIS */
-        .float-emoji {
-            position: fixed; font-size: 2.5rem; pointer-events: none; z-index: 12;
-            filter: drop-shadow(0 5px 15px rgba(255,255,255,0.3));
-            animation: floatUp 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            0% { transform: translateX(-20vw) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; transform: scale(1.1); }
+            100% { transform: translateX(120vw) scale(0.5); opacity: 0; }
         }
         @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.3) rotate(-10deg); opacity: 0; }
-            15% { opacity: 1; transform: scale(1) rotate(0deg); }
-            85% { opacity: 1; }
-            100% { transform: translateY(-120vh) scale(1.5) rotate(10deg); opacity: 0; }
+            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
         }
-
-        /* RAINBOW ARC */
-        .rainbow-arc {
-            position: fixed; top: 20%; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--rose-gold), var(--heart-glow), var(--sparkle-gold), transparent);
-            border-radius: 50% 50% 50% 50% / 100% 100% 0 0;
-            transform-origin: bottom center; opacity: 0;
-        }
-        @keyframes rainbowSweep {
-            0% { transform: scaleX(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: scaleX(1); opacity: 0; }
-        }
-
-        /* GLITCH EFFECT */
-        .glitch {
-            position: relative; color: var(--rose-gold);
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-        }
-        .glitch::before { animation: glitch1 2s infinite; color: #ff00ff; }
-        .glitch::after { animation: glitch2 2s infinite; color: #00ffff; }
-        @keyframes glitch1 { 0%,100%{transform:translate(0);} 20%{transform:translate(-2px,2px);skew(1deg);} 40%{transform:translate(-1px,-2px);skew(-1deg);} 60%{transform:translate(2px,1px);skew(1deg);} 80%{transform:translate(-1px,1px);skew(1deg);} }
-        @keyframes glitch2 { 0%,100%{transform:translate(0);} 20%{transform:translate(2px,-1px);skew(-1deg);} 40%{transform:translate(1px,2px);skew(1deg);} 60%{transform:translate(-2px,-1px);skew(-1deg);} 80%{transform:translate(1px,-2px);skew(1deg);} }
-
-        /* ULTIMATE SORRY TEXT */
-        .sorry-text {
-            font-size: clamp(4rem, 12vw, 8rem); font-family: 'Dancing Script', cursive;
-            background: linear-gradient(45deg, var(--heart-glow), var(--rose-gold), var(--sparkle-gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; text-shadow: none;
-            animation: sorryPulse 2s ease-in-out infinite;
-        }
-        @keyframes sorryPulse {
-            0%, 100% { transform: scale(1) rotate(-2deg); filter: hue-rotate(0deg) brightness(1); }
-            50% { transform: scale(1.1) rotate(2deg); filter: hue-rotate(20deg) brightness(1.2); }
-        }
-
-        /* BUTTON RIPPLE */
-        .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.6); transform: scale(0); animation: rippleEffect 0.6s linear; pointer-events: none; }
-        @keyframes rippleEffect {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        /* EXISTING ANIMATIONS + ENHANCEMENTS */
-        .big-heart { animation: beat 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite; }
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-        }
-        /* Keep all previous styles... */
-        
-        #follow { animation: heartbeat 2s ease-in-out infinite; }
         @keyframes heartbeat {
             0%, 100% { transform: translateX(-50%) scale(1); }
-            14% { transform: translateX(-50%) scale(1.1); }
-            28% { transform: translateX(-50%) scale(1.2); }
-            42% { transform: translateX(-50%) scale(1.15); }
-            70% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
-        .envelope { animation: envelopeFloat 3s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
-        @keyframes envelopeFloat {
-            0%, 100% { transform: translateY(0) rotateX(0deg); }
-            50% { transform: translateY(-15px) rotateX(10deg); }
+        .sorry-text {
+            font-size: clamp(3.5rem, 8vw, 6.5rem); font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, var(--heart-glow), #ffa07a);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: beat 2s infinite;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
         }
+
+        #noBtn { transition: all 0.3s ease; position: relative; }
     </style>
 </head>
 <body>
 
-    <!-- ALL EXISTING HTML + NEW ELEMENTS -->
-    <div id="follow">Follow my heart 💗 @smss1708</div>
+    <div id="follow">Follow 💗 - smss1708</div>
     
-    <!-- NEW CONTAINERS -->
     <div id="heartRain" class="fixed inset-0 pointer-events-none z-10"></div>
     <div id="fireworks" class="fixed inset-0 pointer-events-none z-20"></div>
-    <div id="sparkles" class="fixed inset-0 pointer-events-none z-15"></div>
     <div id="loveWaves" class="fixed inset-0 pointer-events-none z-8"></div>
     <div id="floatEmojis" class="fixed inset-0 pointer-events-none z-12"></div>
 
-    <!-- Keep all slides same, just add these special ones -->
-    
-    <!-- NEW SPECIAL SORRY SLIDE (add after slide6) -->
-    <div id="slide6_5" class="slide">
-        <div class="sorry-text glitch mb-10" data-text="I'M REALLY SORRY 🥺💔">I'M REALLY SORRY 🥺💔</div>
-        <div class="rainbow-arc" style="animation-delay: 1s;"></div>
-        <p class="text-2xl mb-12">Ye dil maaf kar de meri bestie... 😭</p>
-        <button onclick="nextSlide()" class="lux-btn text-xl py-6 px-12">Haan bestie... 💕</button>
+    <div id="slide1" class="slide active">
+        <h1>Hey Cutie... 🥺</h1>
+        <p>I know I can be a little stupid sometimes, and I end up making mistakes...</p>
+        <button onclick="nextSlide(2)" class="lux-btn">Next 👉</button>
     </div>
 
-    <!-- Modified slide10 for EPIC effect -->
-    <div id="slide10" class="slide">
-        <div class="big-heart mb-8" style="font-size: 18rem;">💖</div>
-        <h1 class="signature mb-10 text-rose-gold sorry-text">Forgive me? 🥺</h1>
-        <p class="text-2xl mb-12">Tera ye dost bilkul akela ho jayega... please? 😭💗</p>
-        <div class="flex flex-col gap-8 mt-12 max-w-lg mx-auto">
-            <button onclick="ultimateForgiveness()" class="lux-btn text-2xl py-7 shadow-3xl">YES BESTIE! I FORGIVE YOU 💖✨</button>
-            <button id="noBtn" class="bg-gradient-to-r from-red-600/80 to-pink-600/80 backdrop-blur-xl p-8 rounded-3xl text-white text-xl font-bold border-4 border-rose-gold/60 shadow-3xl">Nahii 😤</button>
+    <div id="slide2" class="slide">
+        <div class="sorry-text mb-6">I'm Really Sorry 💔</div>
+        <p>I never ever intended to hurt you. You are my absolute favorite person and my cutie...</p>
+        <p>Please forgive me, bestie... 😭</p>
+        <button onclick="nextSlide(3)" class="lux-btn">Yes, 👉👈... 💕</button>
+    </div>
+
+    <div id="slide3" class="slide">
+        <div class="mb-4" style="font-size: 8rem; animation: beat 1.5s infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">💖</div>
+        <div class="sorry-text" style="font-size: 4rem;">Forgive me? 🥺</div>
+        <p>I would be so lost without my you ... Please agree? 😭💗</p>
+        
+        <div class="flex flex-col gap-4 mt-6 max-w-lg mx-auto w-full items-center">
+            <button onclick="ultimateForgiveness()" class="lux-btn text-xl py-4 px-8 w-72">YES! I FORGIVE YOU ✨</button>
+            <button id="noBtn" class="bg-red-500/90 p-4 rounded-full text-white font-bold border-2 border-white/50 w-64 cursor-pointer shadow-lg">No way! 😤</button>
         </div>
     </div>
 
-    <!-- Keep all other slides same -->
+    <div id="slide4" class="slide">
+        <div class="mb-4" style="font-size: 8rem; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">🎉</div>
+        <h1 style="font-size: 3.5rem;">Thank You So Much! 🫂</h1>
+        <p>You are the best! Now give me a big, beautiful smile! 😊</p>
+    </div>
 
     <script>
-        // ALL PREVIOUS FUNCTIONS + NEW ONES
-        
-        // ULTIMATE HEART RAIN (runs everywhere)
-        function heartRain() {
-            const container = document.getElementById('heartRain');
-            const hearts = ['💖','💕','💗','💓','💞','💝','🩷'];
+        // SLIDE NAVIGATION
+        function nextSlide(slideNumber) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById(`slide${slideNumber}`).classList.add('active');
+        }
+
+        // OPTIMIZED ANIMATIONS 
+        function startAnimations() {
+            const hContainer = document.getElementById('heartRain');
+            const eContainer = document.getElementById('floatEmojis');
+            
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.className = 'heart-rain';
-                heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+                heart.textContent = ['💖','💕','💗','💝'][Math.floor(Math.random()*4)];
                 heart.style.left = Math.random()*100 + 'vw';
-                heart.style.animationDuration = (6 + Math.random()*6) + 's';
-                container.appendChild(heart);
-                setTimeout(()=>heart.remove(), 14000);
-            }, 300);
+                heart.style.animationDuration = (5 + Math.random()*3) + 's';
+                hContainer.appendChild(heart);
+                setTimeout(()=>heart.remove(), 8000);
+            }, 600);
+
+            setInterval(() => {
+                const emoji = document.createElement('div');
+                emoji.className = 'float-emoji';
+                emoji.textContent = ['🌸','✨','🌟','🦋'][Math.floor(Math.random()*4)];
+                emoji.style.left = Math.random()*100 + 'vw';
+                emoji.style.animationDuration = (6 + Math.random()*4) + 's';
+                eContainer.appendChild(emoji);
+                setTimeout(()=>emoji.remove(), 10000);
+            }, 3000);
         }
 
-        // FIREWORKS EXPLOSION
+        // THROTTLED MOUSEMOVE SPARKLES
+        let lastSparkle = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if(now - lastSparkle > 80 && Math.random() < 0.6) { 
+                lastSparkle = now;
+                const sparkle = document.createElement('div');
+                sparkle.className = 'magic-sparkle';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                
+                sparkle.animate([
+                    { transform: 'scale(0)', opacity: 0 },
+                    { transform: 'scale(1.5)', opacity: 1 },
+                    { transform: 'scale(0)', opacity: 0 }
+                ], { duration: 1000 });
+                setTimeout(()=>sparkle.remove(), 1000);
+            }
+        });
+
+        // "NO" BUTTON TRICK
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40) - (window.innerWidth/2 - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40) - (window.innerHeight/2 - 50);
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // FIREWORKS FOR "YES"
         function createFirework(x, y) {
             const container = document.getElementById('fireworks');
             const firework = document.createElement('div');
@@ -277,144 +244,37 @@
             firework.style.left = x + 'px';
             firework.style.top = y + 'px';
             
-            for(let i = 0; i < 25; i++) {
+            for(let i = 0; i < 15; i++) { 
                 const particle = document.createElement('div');
                 particle.className = 'firework-explosion';
-                particle.style.background = ['#ff69b4', '#ffd700', '#ff1493', '#ffb6c1'][Math.floor(Math.random()*4)];
-                particle.style.left = '50%';
-                particle.style.top = '50%';
+                particle.style.background = ['#ff69b4', '#ffd700', '#ffb6c1'][Math.floor(Math.random()*3)];
                 
-                const angle = (i / 25) * Math.PI * 2;
+                const angle = (i / 15) * Math.PI * 2;
                 particle.animate([
-                    { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
-                    { transform: `translate(calc(-50% + ${Math.cos(angle)*150}px), calc(-50% + ${Math.sin(angle)*150}px)) scale(1)`, opacity: 0 }
-                ], {
-                    duration: 1200,
-                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                });
+                    { transform: 'translate(0, 0) scale(0)', opacity: 1 },
+                    { transform: `translate(${Math.cos(angle)*100}px, ${Math.sin(angle)*100}px) scale(1.5)`, opacity: 0 }
+                ], { duration: 1000, easing: 'ease-out' });
                 
                 firework.appendChild(particle);
             }
-            
             container.appendChild(firework);
-            setTimeout(()=>firework.remove(), 1500);
+            setTimeout(()=>firework.remove(), 1000);
         }
 
-        // MAGIC SPARKLES ON HOVER
-        document.addEventListener('mousemove', (e) => {
-            if(Math.random() < 0.3) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'magic-sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.animationDuration = '1.5s';
-                document.body.appendChild(sparkle);
-                
-                sparkle.animate([
-                    { transform: 'scale(0) rotate(0deg)', opacity: 0 },
-                    { transform: 'scale(1.3) rotate(180deg)', opacity: 1 },
-                    { transform: 'scale(0) rotate(360deg)', opacity: 0 }
-                ], { duration: 1500 });
-                
-                setTimeout(()=>sparkle.remove(), 1600);
-            }
-        });
-
-        // LOVE WAVES
-        function loveWave() {
-            const container = document.getElementById('loveWaves');
-            const waves = ['💕💖💗', '✨💝🩷', '💞💓💖'];
-            setInterval(() => {
-                const wave = document.createElement('div');
-                wave.className = 'love-wave';
-                wave.textContent = waves[Math.floor(Math.random()*3)];
-                wave.style.top = (20 + Math.random()*40) + 'vh';
-                wave.style.animationDuration = '12s';
-                container.appendChild(wave);
-                setTimeout(()=>wave.remove(), 13000);
-            }, 4000);
-        }
-
-        // FLOATING EMOJIS
-        function floatEmojis() {
-            const container = document.getElementById('floatEmojis');
-            const emojis = ['🌸','💫','✨','🌟','🦋','💫','🎀'];
-            setInterval(() => {
-                const emoji = document.createElement('div');
-                emoji.className = 'float-emoji';
-                emoji.textContent = emojis[Math.random()*emojis.length|0];
-                emoji.style.left = Math.random()*100 + 'vw';
-                emoji.style.animationDuration = (6 + Math.random()*5) + 's';
-                container.appendChild(emoji);
-                setTimeout(()=>emoji.remove(), 12000);
-            }, 2000);
-        }
-
-        // ULTIMATE FORGIVENESS (EPIC!)
         function ultimateForgiveness() {
-            // MASSIVE EXPLOSION
-            for(let i = 0; i < 15; i++) {
+            for(let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createFirework(innerWidth/2 + (Math.random()-0.5)*400, innerHeight/2 + (Math.random()-0.5)*400);
-                }, i*100);
+                    createFirework(
+                        Math.random() * window.innerWidth, 
+                        Math.random() * window.innerHeight
+                    );
+                }, i * 200);
             }
-            
-            // Screen shake + rainbow arcs
-            document.body.style.animation = 'shake 0.5s';
-            for(let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    const arc = document.createElement('div');
-                    arc.className = 'rainbow-arc';
-                    arc.style.top = (10 + i*15) + 'vh';
-                    arc.style.animationDuration = '2s';
-                    document.body.appendChild(arc);
-                    setTimeout(()=>arc.remove(), 2500);
-                }, i*200);
-            }
-            
-            setTimeout(nextSlide, 3000);
+            setTimeout(() => nextSlide(4), 1500);
         }
 
-        // RIPPLE EFFECT ON BUTTONS
-        document.querySelectorAll('.lux-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                ripple.className = 'ripple';
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // INIT ALL NEW ANIMATIONS
-        window.addEventListener('load', () => {
-            heartRain();
-            loveWave();
-            floatEmojis();
-            createParticles(); // existing
-        });
-
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // All previous functions remain the same...
-        // Just call nextSlide() instead of next()
+        // INIT
+        window.onload = startAnimations;
     </script>
 </body>
 </html>
