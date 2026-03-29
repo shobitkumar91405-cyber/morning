@@ -2,505 +2,257 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You cuteee😘😊 💗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For You cuteee😘 💗</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;700&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
         
         body {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #0c0c0c 0%, #1a001f 50%, #000000 100%);
+            background: radial-gradient(circle at center, #1a001f 0%, #000 100%);
             font-family: 'Poppins', sans-serif;
             overflow: hidden; color: #ffffff; user-select: none;
-            perspective: 1000px; /* 3D perspective */
+            height: 100vh; width: 100vw; perspective: 1500px;
         }
 
-        .header-tag {
-            position: fixed; top: 20px; width: 100%; text-align: center;
-            z-index: 1000; font-family: 'Dancing Script', cursive;
-            color: #ffb3d9; font-size: clamp(1.2rem, 4vw, 2rem); letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(255,179,217,0.8), 0 0 40px rgba(255,0,204,0.6);
-            animation: headerFloat 6s ease-in-out infinite;
-            transform-style: preserve-3d;
+        /* Fixed Instagram Header - Top Pe */
+        .insta-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px);
+            z-index: 9999; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        @keyframes headerFloat {
-            0%, 100% { transform: translateY(0px) rotateX(0deg); }
-            50% { transform: translateY(-10px) rotateX(2deg); }
+        .insta-header span { 
+            font-weight: 700; font-size: 0.9rem;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
+        /* Slides Styling */
         .slide {
             display: none; position: fixed; inset: 0; width: 100%; height: 100vh;
             align-items: center; justify-content: center; flex-direction: column;
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0; z-index: 20; padding: 20px; text-align: center;
-            transform-style: preserve-3d; transform: translateZ(-50px) scale(0.95);
+            transform: translateZ(-100px) scale(0.9);
         }
-        .slide.active { 
-            display: flex; opacity: 1; transform: translateZ(0) scale(1) rotateX(0deg); 
-        }
+        .slide.active { display: flex; opacity: 1; transform: translateZ(0) scale(1); }
 
+        /* Ultra Glow Text */
         .cute-msg { 
             font-family: 'Dancing Script', cursive; 
-            background: linear-gradient(45deg, #ffebf5, #ff69b4, #ff00cc);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; font-size: clamp(2rem, 8vw, 4.5rem); 
-            margin: 20px 0; font-weight: 700;
-            text-shadow: 0 0 30px rgba(255,0,204,0.8), 0 0 60px rgba(255,0,204,0.6);
-            transform-style: preserve-3d; animation: msgGlow 3s ease-in-out infinite alternate;
+            font-size: clamp(2.2rem, 8vw, 4rem); color: white;
+            margin: 15px 0; font-weight: 700;
+            text-shadow: 0 0 15px #ff00cc, 0 0 30px #ff00cc;
+            animation: textPulse 2s infinite alternate;
         }
-        @keyframes msgGlow {
-            0% { filter: drop-shadow(0 0 20px #ff00cc); transform: translateZ(20px); }
-            100% { filter: drop-shadow(0 0 40px #ff69b4); transform: translateZ(40px); }
+        @keyframes textPulse {
+            from { text-shadow: 0 0 15px #ff00cc, 0 0 25px #ff00cc; }
+            to { text-shadow: 0 0 30px #ff69b4, 0 0 50px #ff00cc; transform: scale(1.02); }
         }
 
-        .sub-text { 
-            color: #f0f0f0; font-weight: 600; font-size: clamp(1rem, 4vw, 1.4rem); 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8); max-width: 90%; 
-            line-height: 1.5; margin-bottom: 25px;
-        }
+        .sub-text { color: #f0f0f0; font-size: 1.1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); margin-bottom: 20px; }
 
-        /* 3D Enhanced GIF Frame */
+        /* 3D GIF Frame */
         .gif-frame { 
-            width: clamp(220px, 35vw, 320px); 
-            height: clamp(220px, 35vw, 320px); 
-            border-radius: 25px; 
-            border: 4px solid transparent;
-            background: linear-gradient(45deg, #ff00cc, #ff69b4, #ffb3d9) border-box;
-            box-shadow: 
-                0 0 50px rgba(255, 0, 204, 0.6),
-                inset 0 0 30px rgba(255,255,255,0.1),
-                0 20px 40px rgba(0,0,0,0.5);
-            object-fit: cover; 
-            transform-style: preserve-3d;
-            animation: gifFloat 4s ease-in-out infinite;
-        }
-        @keyframes gifFloat {
-            0%, 100% { transform: translateZ(0px) rotateY(0deg) rotateX(0deg); }
-            33% { transform: translateZ(15px) rotateY(5deg) rotateX(2deg); }
-            66% { transform: translateZ(10px) rotateY(-5deg) rotateX(-2deg); }
+            width: 250px; height: 250px; border-radius: 20px; 
+            border: 3px solid #ff00cc; box-shadow: 0 0 30px rgba(255,0,204,0.5);
+            object-fit: cover; transform: rotateX(5deg) rotateY(-5deg);
         }
 
-        /* Ultra 3D Button */
+        /* Main Buttons */
         .glow-btn { 
-            background: linear-gradient(145deg, rgba(255,0,204,0.9), rgba(255,105,180,0.9));
-            padding: 18px 45px; border-radius: 60px; font-weight: 800; 
-            box-shadow: 
-                0 15px 35px rgba(255,0,204,0.4),
-                0 0 0 2px rgba(255,255,255,0.2),
-                inset 0 2px 10px rgba(255,255,255,0.3);
-            cursor: pointer; transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-            color: white; border: none; font-size: clamp(1rem, 3.5vw, 1.3rem);
-            position: relative; overflow: hidden; transform-style: preserve-3d;
-            text-transform: uppercase; letter-spacing: 1px;
+            background: linear-gradient(45deg, #ff00cc, #ff69b4);
+            padding: 15px 35px; border-radius: 50px; font-weight: 700; 
+            box-shadow: 0 10px 25px rgba(255,0,204,0.4);
+            color: white; border: none; font-size: 1.1rem;
+            cursor: pointer; transition: 0.3s;
         }
-        .glow-btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-        .glow-btn:hover::before { left: 100%; }
-        .glow-btn:hover { 
-            transform: translateZ(20px) scale(1.15) rotateX(10deg); 
-            box-shadow: 0 25px 50px rgba(255,0,204,0.7), 0 0 60px rgba(255,105,180,0.8);
-        }
-        .glow-btn:active { transform: translateZ(10px) scale(1.05) rotateX(5deg); }
+        .glow-btn:active { transform: scale(0.9); }
 
-        .no-btn { 
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a); 
-            color: #ccc; padding: 15px 30px; border-radius: 50px; 
-            cursor: pointer; transition: all 0.3s; border: 2px solid #444;
-            font-weight: 600; position: relative; overflow: hidden;
-        }
-        .no-btn:hover { background: #ff4444; color: white; transform: scale(1.05); }
-
-        /* Advanced 3D Solar System */
-        .solar-system { 
-            position: relative; width: clamp(300px, 45vw, 400px); 
-            height: clamp(300px, 45vw, 400px); 
-            display: flex; align-items: center; justify-content: center;
-            transform-style: preserve-3d; perspective: 1000px;
-        }
-        .orbit { 
-            position: absolute; border: 2px solid rgba(255,105,180,0.4); 
-            border-radius: 50%; animation: spin linear infinite;
-            transform-style: preserve-3d;
-        }
-        .orbit-1 { width: 200px; height: 200px; animation-duration: 6s; }
-        .orbit-2 { width: 320px; height: 320px; animation-duration: 12s; animation-direction: reverse; }
-        .orbit-3 { 
-            width: 250px; height: 250px; animation-duration: 8s; 
-            border: 1px solid rgba(120,219,255,0.4); 
-            animation-delay: -2s;
-        }
-        .planet { 
-            position: absolute; top: -15px; left: 50%; 
-            transform: translateX(-50%) translateZ(20px);
-            font-size: clamp(24px, 6vw, 32px); text-shadow: 0 0 15px currentColor;
-            animation: planetGlow 2s ease-in-out infinite alternate;
-        }
-        @keyframes planetGlow {
-            0% { filter: drop-shadow(0 0 10px currentColor); transform: translateZ(20px); }
-            100% { filter: drop-shadow(0 0 25px currentColor); transform: translateZ(35px); }
-        }
-        @keyframes spin { 100% { transform: rotate(360deg) rotateX(10deg); } }
-
-        /* Enhanced Stars with Layers */
-        .star { 
-            position: absolute; background: radial-gradient(circle, #fff, transparent);
-            border-radius: 50%; box-shadow: 0 0 15px rgba(255,255,255,0.8);
-            animation: twinkle var(--d) infinite alternate;
-            transform-style: preserve-3d;
-        }
-        .star::before {
-            content: ''; position: absolute; top: 50%; left: 50%; width: 2px; height: 2px;
-            background: #fff; border-radius: 50%; transform: translate(-50%, -50%);
-            animation: sparkle 1s infinite alternate;
-        }
-        @keyframes twinkle { 
-            0% { opacity: 0.1; transform: scale(0.5) translateZ(0px); } 
-            100% { opacity: 1; transform: scale(1.5) translateZ(10px); } 
-        }
-        @keyframes sparkle { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.5); } }
-
-        /* 3D Hold Progress */
+        /* Hold Progress Bar */
         .hold-container { 
-            width: clamp(250px, 40vw, 350px); height: 20px; 
-            background: rgba(255,255,255,0.1); border-radius: 15px; 
-            margin: 30px 0; overflow: hidden; position: relative; 
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 30px rgba(255,0,204,0.3);
+            width: 250px; height: 12px; background: rgba(255,255,255,0.1); 
+            border-radius: 10px; margin: 20px 0; overflow: hidden; border: 1px solid #ff00cc;
         }
-        #holdProgress { 
-            position: absolute; left: 0; top: 0; height: 100%; 
-            background: linear-gradient(90deg, #ff00cc, #ff69b4, #ffb3d9);
-            width: 0%; box-shadow: 0 0 30px #ff00cc; border-radius: 15px;
-            transition: width 0.1s ease; transform: translateZ(10px);
-        }
+        #holdProgress { height: 100%; width: 0%; background: #ff00cc; transition: width 0.1s; }
 
-        /* 3D Pulsing Heart */
-        #pulseHeart {
-            font-size: clamp(80px, 20vw, 150px); 
-            filter: drop-shadow(0 0 30px #ff00cc);
-            animation: heartBeat 1.5s ease-in-out infinite;
-            transform-style: preserve-3d;
+        /* Solar System 3D */
+        .solar-system { 
+            position: relative; width: 250px; height: 250px; transform-style: preserve-3d;
+            display: flex; align-items: center; justify-content: center;
         }
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1) translateZ(0px) rotateY(0deg); }
-            14% { transform: scale(1.3) translateZ(20px) rotateY(2deg); }
-            28% { transform: scale(1) translateZ(10px) rotateY(-1deg); }
-            42% { transform: scale(1.5) translateZ(30px) rotateY(3deg); }
-            70% { transform: scale(1) translateZ(0px) rotateY(0deg); }
-        }
+        .orbit { position: absolute; border: 1px solid rgba(255,105,180,0.4); border-radius: 50%; animation: spin linear infinite; }
+        .orbit-1 { width: 120px; height: 120px; animation-duration: 4s; }
+        .orbit-2 { width: 200px; height: 200px; animation-duration: 8s; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Video Layer Enhancement */
+        /* Full Screen Video FIX */
         #videoLayer { 
-            display: none; position: fixed; inset: 0; 
-            background: radial-gradient(circle, rgba(0,0,0,0.9), rgba(20,0,31,0.95));
-            z-index: 10000; align-items: center; justify-content: center; 
-            backdrop-filter: blur(10px);
+            display: none; position: fixed; inset: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 10000;
         }
-        video { 
-            width: 95%; height: 95%; object-fit: contain; 
-            border-radius: 25px; box-shadow: 0 0 100px rgba(255,0,204,0.8);
-            transform-style: preserve-3d;
-        }
+        video { width: 100%; height: 100%; object-fit: cover; } /* No black bars */
 
-        /* Mobile Optimizations */
-        @media (max-width: 640px) {
-            .slide { padding: 15px; }
-            .glow-btn { padding: 15px 35px; font-size: 1rem; }
-            .solar-system { width: 280px !important; height: 280px !important; }
-            .orbit-1 { width: 160px !important; height: 160px !important; }
-            .orbit-2 { width: 260px !important; height: 260px !important; }
-        }
-
-        /* Loading Animation */
-        .loading { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
-        .spinner { width: 60px; height: 60px; border: 4px solid rgba(255,0,204,0.2); border-top: 4px solid #ff00cc; border-radius: 50%; animation: spin 1s linear infinite; }
+        /* Stars */
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--d) infinite alternate; }
+        @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
     </style>
 </head>
-<body>
+<body onclick="playMusic()">
 
-    <div class="loading" id="loader">
-        <div class="spinner"></div>
+    <div class="insta-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="20">
+        <span>Follow @smss1708</span>
     </div>
 
-    <div class="header-tag">✨ Follow on inta - @smss1708💗 ✨</div>
-
-    <audio id="bgMusic" loop src="tere-liye.mp3" preload="auto"></audio>
+    <audio id="bgMusic" loop src="tere-liye.mp3"></audio>
     <div id="stars-container" class="fixed inset-0 pointer-events-none"></div>
 
-    <!-- Enhanced Slides with 3D Effects -->
-    <div id="slide1" class="slide active">
-        <img src="gif1.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
+    <div id="slide1" class="slide active" onclick="next()">
+        <img src="gif1.gif" class="gif-frame">
         <h1 class="cute-msg">Hey Gorgeous! ✨</h1>
-        <p class="sub-text">We just met, but my heart already knew it was you! 💖</p>
-        <button onclick="startApp()" class="glow-btn">💕 Touch My Heart 🥺</button>
+        <p class="sub-text">Touch to start our journey...</p>
+        <button class="glow-btn">Start Love 💕</button>
     </div>
 
-    <div id="slide2" class="slide">
-        <img src="gif2.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">How are you so cute? 😍</h1>
-        <p class="sub-text">Seriously, your smile is the highlight of my entire day! 🌟</p>
-        <button onclick="next()" class="glow-btn">💖 See More Magic</button>
+    <div id="slide2" class="slide" onclick="next()">
+        <img src="gif2.gif" class="gif-frame">
+        <h1 class="cute-msg">You're So Sweet! 😍</h1>
+        <p class="sub-text">Your smile makes my day brighter.</p>
+        <button class="glow-btn">Keep Going</button>
     </div>
 
-    <div id="slide3" class="slide">
-        <img src="gif3.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">Our Vibe is Rare! 😌✨</h1>
-        <p class="sub-text">Talking to you feels like time has completely stopped... magic! 🪄</p>
-        <button onclick="next()" class="glow-btn">🌟 Next Step ✨</button>
+    <div id="slide3" class="slide" onclick="next()">
+        <img src="gif3.gif" class="gif-frame">
+        <h1 class="cute-msg">Best Vibe Ever! 🪄</h1>
+        <p class="sub-text">Talking to you feels like a dream.</p>
+        <button class="glow-btn">Next Step</button>
     </div>
 
     <div id="slide4" class="slide">
-        <div id="pulseHeart">💖</div>
-        <h1 class="cute-msg">How much do I adore you? 🤗</h1>
+        <div class="text-6xl mb-4">💖</div>
+        <h1 class="cute-msg">Hold My Heart!</h1>
         <div class="hold-container"><div id="holdProgress"></div></div>
-        <button id="holdBtn" class="glow-btn mt-8 select-none">🎯 PRESS & HOLD TO FEEL 💕</button>
-        <p class="sub-text mt-4 opacity-80">Don't let go until it's full! 🥰</p>
+        <button id="holdBtn" class="glow-btn">PRESS & HOLD 🎯</button>
     </div>
 
-    <div id="slide5" class="slide">
-        <img src="gif4.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">You're One in a Billion! 💎✨</h1>
-        <p class="sub-text">It's only been a short time, but the feeling is pure magic! 🦋</p>
-        <button onclick="next()" class="glow-btn">💫 Continue Journey...</button>
+    <div id="slide5" class="slide" onclick="next()">
+        <img src="gif4.gif" class="gif-frame">
+        <h1 class="cute-msg">One in Billion! 💎</h1>
+        <p class="sub-text">You are truly special to me.</p>
+        <button class="glow-btn">Continue...</button>
     </div>
 
     <div id="slide6" class="slide">
         <div class="solar-system">
-            <div class="orbit orbit-1"><span class="planet">💗</span></div>
-            <div class="orbit orbit-3"><span class="planet">🌙</span></div>
-            <div class="orbit orbit-2"><span class="planet">⭐</span></div>
-            <div class="text-6xl" style="transform: translateZ(30px);">🌍</div>
+            <div class="orbit orbit-1" style="display: flex; align-items: center; justify-content: center;">🌸</div>
+            <div class="orbit orbit-2" style="display: flex; align-items: start; justify-content: center;">⭐</div>
+            <div class="text-4xl">🌍</div>
         </div>
-        <h1 class="cute-msg mt-12">My Whole Universe! 🌌</h1>
-        <p class="sub-text">Everything seems better when you're around! 💫</p>
-        <button onclick="next()" class="glow-btn">🚀 Keep Going Cosmos</button>
+        <h1 class="cute-msg mt-8">My Universe! 🌌</h1>
+        <button onclick="next()" class="glow-btn">Travel More 🚀</button>
     </div>
 
-    <div id="slide7" class="slide">
-        <img src="gif5.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">Don't ever leave! 🥺💖</h1>
-        <p class="sub-text">I've never met anyone as sweet and special as you! 🌹</p>
-        <button onclick="next()" class="glow-btn">⏳ Wait for it...</button>
+    <div id="slide7" class="slide" onclick="next()">
+        <img src="gif5.gif" class="gif-frame">
+        <h1 class="cute-msg">Stay Forever! 🥺</h1>
+        <p class="sub-text">Don't ever leave this bond.</p>
+        <button class="glow-btn">Wait for it...</button>
     </div>
 
-    <div id="slide8" class="slide">
-        <h1 class="cute-msg">You're my Brightest Star! ⭐🌟</h1>
-        <p class="sub-text max-w-xs mx-auto">In a sky full of stars, my eyes only search for you! 💫</p>
-        <button onclick="next()" class="glow-btn">💎 Just a bit more ✨</button>
+    <div id="slide8" class="slide" onclick="next()">
+        <h1 class="cute-msg">Brightest Star ⭐</h1>
+        <p class="sub-text">You shine the most in my life.</p>
+        <button class="glow-btn">Almost There...</button>
     </div>
 
     <div id="slide9" class="slide">
-        <img src="gif6.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">Will You Be My Friend? ❤️🔥</h1>
-        <p class="sub-text text-lg">...and maybe something even more special? 💍✨</p>
-        <div id="btnContainer" class="flex flex-wrap justify-center mt-8 gap-4">
-            <button onclick="next()" class="glow-btn text-xl px-8 py-5">YES! 😍💖</button>
-            <button id="noBtn" onclick="trapNo()" class="no-btn text-lg px-8 py-4">No 🥺</button>
+        <img src="gif6.gif" class="gif-frame">
+        <h1 class="cute-msg">Be Mine? ❤️</h1>
+        <div class="flex gap-4 mt-4" id="btnGroup">
+            <button onclick="next()" class="glow-btn">YES! 😍</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" class="bg-gray-700 px-6 py-3 rounded-full">No 🥺</button>
         </div>
     </div>
 
     <div id="slide10" class="slide">
-        <img src="gif7.gif" class="gif-frame" loading="lazy" alt="Cute GIF">
-        <h1 class="cute-msg">Yaaay! My Heart is Happy! 🥳🎉</h1>
-        <p class="sub-text text-lg">I promise to keep that beautiful smile on your face forever! 💝</p>
-        <button onclick="playSurprise()" class="glow-btn text-xl px-10 py-6 animate-pulse">🎁 GRAND FINALE SURPRISE 🎊</button>
+        <img src="gif7.gif" class="gif-frame">
+        <h1 class="cute-msg">I'm So Happy! 🥳</h1>
+        <p class="sub-text">Time for your Grand Finale!</p>
+        <button onclick="playSurprise()" class="glow-btn animate-bounce">🎁 OPEN SURPRISE 🎊</button>
     </div>
 
     <div id="videoLayer">
-        <video id="vPlayer" playsinline preload="auto" src="video1.mp4" muted></video>
-        <button onclick="closeVideo()" class="absolute top-8 right-8 text-3xl glow-btn p-4 rounded-full" style="width:60px;height:60px;">✕</button>
+        <video id="vPlayer" playsinline src="video1.mp4"></video>
     </div>
 
     <script>
         let step = 1;
         const music = document.getElementById('bgMusic');
-        let isHolding = false;
 
-        // Enhanced Stars with Multiple Layers
-        const starContainer = document.getElementById('stars-container');
-        function createStars() {
-            for(let layer = 0; layer < 3; layer++) {
-                for(let i = 0; i < 50; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    const size = Math.random() * 4 + 1 + (layer * 0.5) + 'px';
-                    star.style.width = size; 
-                    star.style.height = size;
-                    star.style.left = Math.random() * 100 + 'vw';
-                    star.style.top = Math.random() * 100 + 'vh';
-                    star.style.setProperty('--d', (Math.random() * 3 + 1 + layer * 0.5) + 's');
-                    star.style.zIndex = layer;
-                    star.style.transform = `translateZ(${layer * 50}px)`;
-                    starContainer.appendChild(star);
-                }
-            }
+        // Create Stars
+        const stars = document.getElementById('stars-container');
+        for(let i=0; i<80; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            s.style.width = s.style.height = Math.random()*3+'px';
+            s.style.left = Math.random()*100+'vw';
+            s.style.top = Math.random()*100+'vh';
+            s.style.setProperty('--d', Math.random()*2+1+'s');
+            stars.appendChild(s);
         }
-        createStars();
 
-        // Loading Screen
-        window.addEventListener('load', () => {
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => document.getElementById('loader').remove(), 500);
-        });
-
-        function startApp() { 
-            music.volume = 0.3;
-            music.play().catch(() => {}); 
-            next(); 
-        }
+        function playMusic() { music.play().catch(()=>{}); }
 
         function next() {
-            document.querySelectorAll('.slide').forEach(s => { 
-                s.classList.remove('active'); 
-                s.style.display = 'none'; 
-            });
+            document.getElementById(`slide${step}`).classList.remove('active');
             step++;
-            const current = document.getElementById('slide' + step);
-            if(current) { 
-                current.style.display = 'flex'; 
-                setTimeout(() => {
-                    current.classList.add('active');
-                    // Trigger entrance animation
-                    current.style.transform = 'translateZ(0px) scale(1)';
-                }, 100); 
+            const nextSlide = document.getElementById(`slide${step}`);
+            if(nextSlide) {
+                nextSlide.style.display = 'flex';
+                setTimeout(() => nextSlide.classList.add('active'), 50);
             }
         }
 
-        // Enhanced No Button Trap with Animation
-        function trapNo() {
-            const container = document.getElementById('btnContainer');
-            const noBtn = document.getElementById('noBtn');
-            
-            noBtn.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-            noBtn.style.transform = 'scale(0) rotate(720deg)';
-            
-            setTimeout(() => {
-                noBtn.style.display = 'none';
-                
-                // Create exploding YES buttons
-                for(let i = 0; i < 7; i++) {
-                    const newYes = document.createElement('button');
-                    newYes.innerHTML = "YES! 💖✨";
-                    newYes.className = "glow-btn";
-                    newYes.onclick = next;
-                    newYes.style.transform = `translate(${Math.random()*200-100}px, ${Math.random()*100-50}px) rotate(${Math.random()*360}deg) scale(0)`;
-                    newYes.style.transition = `all 0.8s cubic-bezier(0.25,0.46,0.45,0.94) ${i*0.1}s`;
-                    container.appendChild(newYes);
-                    
-                    setTimeout(() => {
-                        newYes.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
-                    }, 50);
-                }
-            }, 500);
+        // Move No Button
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * 70 + 10 + '%';
+            btn.style.top = Math.random() * 70 + 10 + '%';
         }
 
-        // Enhanced Hold Logic with Realistic Physics
-        let hVal = 0, hInt, holdStartTime;
-        const hBtn = document.getElementById('holdBtn'), 
-              hProg = document.getElementById('holdProgress'), 
-              pHeart = document.getElementById('pulseHeart');
-        
-        const startH = (e) => { 
-            e.preventDefault(); 
-            isHolding = true;
-            holdStartTime = Date.now();
-            
-            hBtn.textContent = '💖 HOLDING... KEEP GOING! 💖';
-            pHeart.style.animationDuration = '0.8s';
-            
-            hInt = setInterval(() => { 
-                const elapsed = Date.now() - holdStartTime;
-                hVal = Math.min(100, (elapsed / 3500) * 100); // 3.5s total
-                hProg.style.width = hVal + '%'; 
-                
-                // Progress glow effect
-                hProg.style.boxShadow = `0 0 ${hVal}px #ff00cc, 0 0 ${hVal*0.5}px #ff69b4`;
-                
-                if(hVal >= 100) { 
-                    clearInterval(hInt); 
-                    next(); 
-                } 
-            }, 30); 
-        };
-        
-        const endH = () => { 
-            if(!isHolding) return;
-            isHolding = false;
-            clearInterval(hInt); 
-            
-            const shakeIntensity = (100 - hVal) * 0.1;
-            pHeart.style.animation = `shake ${shakeIntensity}s`;
-            
-            setTimeout(() => {
-                hVal = 0; 
-                hProg.style.width = '0%'; 
-                hProg.style.boxShadow = '0 0 30px #ff00cc';
-                hBtn.textContent = '🎯 PRESS & HOLD TO FEEL 💕';
-                pHeart.style.animation = 'heartBeat 1.5s ease-in-out infinite';
-            }, 300);
-        };
-        
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateZ(0px) rotateY(0deg); }
-                10%, 30%, 50%, 70%, 90% { transform: translateZ(5px) rotateY(2deg); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Enhanced Event Listeners for Mobile/Desktop
-        ['mousedown', 'touchstart'].forEach(ev => hBtn.addEventListener(ev, startH));
-        ['mouseup', 'touchend', 'touchcancel'].forEach(ev => {
-            window.addEventListener(ev, endH);
-            document.addEventListener(ev, endH);
-        });
+        // Hold Bar Logic
+        let hVal = 0, hInt;
+        const hBtn = document.getElementById('holdBtn');
+        const hProg = document.getElementById('holdProgress');
 
-        function playSurprise() { 
-            music.pause(); 
+        const startH = () => {
+            hInt = setInterval(() => {
+                hVal += 2;
+                hProg.style.width = hVal + '%';
+                if(hVal >= 100) { clearInterval(hInt); next(); }
+            }, 50);
+        };
+        const endH = () => { clearInterval(hInt); hVal = 0; hProg.style.width = '0%'; };
+
+        hBtn.addEventListener('mousedown', startH);
+        hBtn.addEventListener('mouseup', endH);
+        hBtn.addEventListener('touchstart', startH);
+        hBtn.addEventListener('touchend', endH);
+
+        // Surprise Video
+        function playSurprise() {
+            music.pause();
             const layer = document.getElementById('videoLayer');
             const video = document.getElementById('vPlayer');
-            layer.style.display = 'flex';
-            video.play().catch(() => {});
-            video.onended = () => { 
-                layer.style.display = 'none'; 
-                step = 1; 
-                next(); 
-            };
-        }
-
-        function closeVideo() {
-            document.getElementById('vPlayer').pause();
-            document.getElementById('videoLayer').style.display = 'none';
-            music.play();
-        }
-
-        // Prevent zoom on double tap for mobile
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // PWA-like fullscreen on mobile
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(''));
-            });
+            layer.style.display = 'block';
+            video.play();
+            video.onended = () => { layer.style.display = 'none'; music.play(); };
         }
     </script>
 </body>
-            </html>
+</html>
