@@ -3,543 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sorry Urvi 🙏</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>Good Morning ☕ Laxmi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* RESET & BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap');
+        
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
         body {
+            background: radial-gradient(circle at center, #ff6b35 0%, #f7931e 50%, #000000 100%);
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; height: 100vh; width: 100vw;
+            color: #ffffff; user-select: none; touch-action: manipulation;
         }
 
-        /* BACKGROUND ANIMATION */
-        .bg-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            z-index: -2;
-            opacity: 0.3;
+        #stars-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .star { 
+            position: absolute; background: #fff176; border-radius: 50%; 
+            animation: realTwinkle var(--dur) infinite ease-in-out;
+            will-change: opacity, transform;
+            box-shadow: 0 0 5px #ffd54f;
         }
+        @keyframes realTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .header-tag {
+            position: fixed; top: 15px; width: 100%; text-align: center;
+            z-index: 100; font-family: 'Dancing Script', cursive;
+            color: #ffeb3b; font-size: 1.8rem;
+            text-shadow: 0 0 15px rgba(255,235,59,0.8);
+        }
+
+        .slide {
+            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
+            align-items: center; justify-content: center; flex-direction: column;
+            opacity: 0; z-index: 20; padding: 25px; text-align: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.98);
+        }
+        .slide.active { display: flex; opacity: 1; transform: scale(1); }
+
+        .cute-msg { 
+            font-family: 'Dancing Script', cursive; color: #ffffff; 
+            text-shadow: 0 0 20px #ff6b35, 3px 3px 8px rgba(0,0,0,0.8); 
+            font-size: clamp(2.5rem, 9vw, 3.5rem); 
+            margin-top: 15px; font-weight: 700; line-height: 1.2;
+        }
+        .sub-text { color: #fffde7; font-weight: 600; font-size: 1.2rem; margin-top: 12px; max-width: 350px; text-shadow: 1px 1px 6px #000; }
         
-        .dark-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, #000 90%);
-            z-index: -1;
+        .emoji-frame { 
+            width: 280px; height: 280px; border-radius: 40px; 
+            border: 6px solid #ffeb3b; box-shadow: 0 0 40px rgba(255,235,59,0.7); 
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.3));
+            font-size: 8rem; position: relative; overflow: hidden;
         }
+        .emoji-frame::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: sparkle 3s infinite;
+        }
+        @keyframes sparkle { 0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; } 50% { transform: scale(1.2) rotate(180deg); opacity: 1; } }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .glow-btn { 
+            background: linear-gradient(45deg, #ff6b35, #ff8f00, #ffc107); 
+            padding: 16px 40px; border-radius: 50px; font-weight: 700; 
+            box-shadow: 0 0 25px rgba(255,152,0,0.5); 
+            cursor: pointer; border: none; color: #1a1a1a; font-size: 1.15rem;
+            margin-top: 25px; transition: 0.3s;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
+        .glow-btn:active { transform: scale(0.92); }
 
-        /* CONTAINER */
-        .app-container {
-            width: 100%;
-            max-width: 480px;
-            height: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .solar-system { position: relative; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; }
+        .orbit { position: absolute; border: 3px solid rgba(255,235,59,0.4); border-radius: 50%; animation: spin linear infinite; }
+        .orbit-1 { width: 200px; height: 200px; animation-duration: 7s; }
+        .orbit-2 { width: 280px; height: 280px; animation-duration: 12s; animation-direction: reverse; }
+        .planet { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 28px; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* FLOATING EMOJIS */
-        .hearts-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
+        .hold-container { width: 300px; height: 20px; background: rgba(255,255,255,0.15); border-radius: 12px; margin-top: 30px; overflow: hidden; border: 3px solid #ffeb3b; }
+        #holdProgress { height: 100%; background: linear-gradient(90deg, #ff6b35, #ffc107); width: 0%; transition: width 0.1s linear; }
 
-        .emoji-float {
-            position: absolute;
-            bottom: -50px;
-            font-size: 24px;
-            animation: float 6s ease-in infinite;
-        }
+        #videoLayer { display: none; position: fixed; inset: 0; background: #1a1a1a; z-index: 1000; align-items: center; justify-content: center; }
+        video { width: 100%; height: 100%; object-fit: contain; }
 
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
-            100% { transform: translateY(-120vh) rotate(360deg) scale(1.2); opacity: 0; }
+        .floating-emojis {
+            position: absolute; font-size: 2rem; animation: floatUp 4s infinite linear;
         }
-
-        /* HEADER */
-        .header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-200px) rotate(360deg); }
         }
-
-        .header-text {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.4;
-            text-align: left;
-        }
-
-        .brand {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.9rem;
-        }
-
-        /* SECTIONS */
-        .section {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0.95);
-            z-index: 10;
-        }
-
-        .section.active {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-
-        /* GLASS CARDS */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 25px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .gif-container {
-            width: 100%;
-            height: 200px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gif-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dual-gif {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .dual-gif .gif-container {
-            height: 150px;
-        }
-
-        /* TEXT STYLES */
-        h1, h2 {
-            font-family: 'Dancing Script', cursive;
-            color: #fff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            font-size: 2rem;
-        }
-
-        p {
-            font-size: 0.95rem;
-            color: #e0e0e0;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* BUTTONS */
-        .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            outline: none;
-            margin-top: 10px;
-        }
-
-        .btn:active {
-            transform: scale(0.95);
-        }
-
-        .btn-outline {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            width: 100%;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* MODAL */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: linear-gradient(160deg, #2c0e37, #120524);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
-            transform: scale(0.8);
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-text {
-            font-size: 1.1rem;
-            margin-top: 20px;
-            font-style: italic;
-            color: #fff;
-        }
-
-        /* MUSIC CONTROL */
-        .music-btn {
-            position: absolute;
-            bottom: 30px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            animation: rotate 5s linear infinite;
-        }
-
-        .music-btn.paused {
-            animation-play-state: paused;
-            opacity: 0.6;
-        }
-
-        /* KEYFRAMES */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes popIn {
-            to { transform: scale(1); }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="tere-liye.mp3" type="audio/mp3">
-    </audio>
+    <div class="header-tag">Good Morning ☕ Laxmi</div>
+    <audio id="bgMusic" loop src="good-morning.mp3" preload="auto"></audio>
+    <div id="stars-container"></div>
 
-    <div class="app-container">
-        <div class="bg-gradient"></div>
-        <div class="dark-overlay"></div>
-        <div class="hearts-container" id="heartsContainer"></div>
+    <!-- SLIDE 1 - SUN RISING -->
+    <div id="slide1" class="slide active">
+        <div class="emoji-frame" id="sunFrame1">☀️</div>
+        <h1 class="cute-msg">Good Morning ☕✨</h1>
+        <p class="sub-text">Uth gayi Laxmi? Coffee ka time ho gaya!</p>
+        <button onclick="startApp()" class="glow-btn">Start My Day ☕❤️</button>
+    </div>
 
-        <div class="header">
-            <div class="header-text">
-                Instagram - @smss1708<br>
-                <span class="brand">Sorry Urvi 🙏</span>
-            </div>
+    <!-- SLIDE 2 - COFFEE HEART -->
+    <div id="slide2" class="slide">
+        <div class="emoji-frame">☕💖</div>
+        <h1 class="cute-msg">Tu meri subah hai Laxmi! 🌅</h1>
+        <p class="sub-text">Tere bina coffee bhi fika lagta hai baby!</p>
+        <button onclick="next()" class="glow-btn">Aur dekho ☕💕</button>
+    </div>
+
+    <!-- SLIDE 3 - FLOWERS -->
+    <div id="slide3" class="slide">
+        <div class="emoji-frame">🌸🌺🌻</div>
+        <h1 class="cute-msg">Sweetest Smile Laxmi! 😍</h1>
+        <p class="sub-text">Teri smile se din ban jata hai mera!</p>
+        <button onclick="next()" class="glow-btn">Continue ☕✨</button>
+    </div>
+
+    <!-- SLIDE 4 - HOLD BUTTON -->
+    <div id="slide4" class="slide">
+        <div class="text-8xl mb-6 transition-transform duration-300" id="pulseHeart">☕💖</div>
+        <h1 class="text-2xl font-bold">Kitna pyar karti hu Laxmi?</h1>
+        <div class="hold-container"><div id="holdProgress"></div></div>
+        <button id="holdBtn" class="glow-btn select-none">PRESS & HOLD TO FEEL ☕</button>
+    </div>
+
+    <!-- SLIDE 5 - COFFEE CUPS -->
+    <div id="slide5" class="slide">
+        <div class="emoji-frame">☕☕💕</div>
+        <h1 class="cute-msg">Coffee & Cuddles Laxmi! 🤗</h1>
+        <p class="sub-text">Yeh combination perfect hai jaise hum!</p>
+        <button onclick="next()" class="glow-btn">Next ☕💕</button>
+    </div>
+
+    <!-- SLIDE 6 - SOLAR SYSTEM -->
+    <div id="slide6" class="slide">
+        <div class="solar-system">
+            <div class="orbit orbit-1"><span class="planet">☕</span></div>
+            <div class="orbit orbit-2"><span class="planet">🌞</span></div>
+            <div class="text-6xl">❤️</div>
         </div>
+        <h1 class="cute-msg mt-10">Meri Duniya Laxmi! 🌍</h1>
+        <p class="sub-text">Tu meri subah, tu mera coffee, tu mera sab kuch!</p>
+        <button onclick="next()" class="glow-btn">Aur dekho ☕🚀</button>
+    </div>
 
-        <div class="section active" id="section1">
-            <div class="glass-card">
-                <div class="gif-container">
-                    <img src="intro.gif" alt="Intro" onerror="this.src='https://media.giphy.com/media/3o7aDgf113Ncoos0Ju/giphy.gif'">
-                </div>
-                <h2>Hey Urvi</h2>
-                <p>Ek minute ruk jaa...<br>Ek baat karni hai tujhse</p>
-                <button class="btn" onclick="nextSection(2)">Continue ➡️</button>
-            </div>
+    <!-- SLIDE 7 - HEART FLOWERS -->
+    <div id="slide7" class="slide">
+        <div class="emoji-frame">💝🌹🌺</div>
+        <h1 class="cute-msg">Hamesha saath rehna Laxmi! 🥺</h1>
+        <p class="sub-text">Har subah tere saath coffee peene ka sapna!</p>
+        <button onclick="next()" class="glow-btn">Special Surprise ☕✨</button>
+    </div>
+
+    <!-- SLIDE 8 - SUNSHINE -->
+    <div id="slide8" class="slide">
+        <div class="emoji-frame">☀️🌈✨</div>
+        <h1 class="cute-msg">You're My Sunshine Laxmi! ☀️</h1>
+        <p class="sub-text">Cloudy days bhi sunny ho jate hain tere saath!</p>
+        <button onclick="next()" class="glow-btn">Final Touch ☕💖</button>
+    </div>
+
+    <!-- SLIDE 9 - PHONE CALL -->
+    <div id="slide9" class="slide">
+        <div class="emoji-frame">📞☕❤️</div>
+        <h1 class="cute-msg">Good Morning Call Laxmi? 📱</h1>
+        <div id="btnContainer" class="flex flex-wrap justify-center gap-3 mt-4">
+            <button id="yesBtn" class="glow-btn">YES! CALL ME ☕😍</button>
+            <button id="noBtn" class="px-8 py-3 bg-gray-800 rounded-full text-gray-400 mt-5">No 🥺</button>
         </div>
+    </div>
 
-        <div class="section" id="section2">
-            <div class="glass-card">
-                <div class="gif-container">
-                    <img src="sorry1.gif" alt="Sorry" onerror="this.src='https://media.giphy.com/media/l4pT2ASyWWGw4NbDq/giphy.gif'">
-                </div>
-                <h2>Urvi...</h2>
-                <p>Mujhe pata hai tune beizzati feel ki thi...<br>Iske liye bahut sorry hu</p>
-                <button class="btn" onclick="nextSection(3)">Next ➡️</button>
-            </div>
-        </div>
+    <!-- SLIDE 10 - FINAL -->
+    <div id="slide10" class="slide">
+        <div class="emoji-frame">🎉☕🥳</div>
+        <h1 class="cute-msg">Yay! Call mat bhoolna Laxmi! 📱☕</h1>
+        <p class="sub-text">Ab coffee bana aur call kar de apni jaan ko!</p>
+        <button onclick="playSurprise()" class="glow-btn animate-bounce">FINAL SURPRISE 🎁☕</button>
+    </div>
 
-        <div class="section" id="section3">
-            <div class="glass-card">
-                <h2>Dil se...</h2>
-                <div class="dual-gif">
-                    <div class="gif-container">
-                        <img src="heart1.gif" alt="Sorry 1" onerror="this.src='https://media.giphy.com/media/26ufnwz3wDUk8Q6JM/giphy.gif'">
-                    </div>
-                    <div class="gif-container">
-                        <img src="heart2.gif" alt="Sorry 2" onerror="this.src='https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'">
-                    </div>
-                </div>
-                <p>Tap to see the message ↓</p>
-                <button class="btn" onclick="nextSection(4)">Continue ➡️</button>
-            </div>
-        </div>
-
-        <div class="section" id="section4">
-            <div class="glass-card">
-                <h2>Jo batana chahta hu...</h2>
-                <p>Tujhe ye jaanna chahiye</p>
-                
-                <button class="btn btn-outline" onclick="openModal('regret')">
-                    🙏 Meri Galti
-                </button>
-                <button class="btn btn-outline" onclick="openModal('care')">
-                    🤝 Meri Value
-                </button>
-                <button class="btn btn-outline" onclick="openModal('promise')">
-                    💪 Mera Wada
-                </button>
-
-                <div style="margin-top: 30px;">
-                    <button class="btn" onclick="nextSection(5)">Next ➡️</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section5">
-            <div class="glass-card">
-                <div class="gif-container">
-                    <img src="promise.gif" alt="Promise" onerror="this.src='https://media.giphy.com/media/3o7TKoWXm3okO1kgHC/giphy.gif'">
-                </div>
-                <p>
-                    <strong>Urvi</strong>, teri beizzati karne ka iraada nahi tha.<br>
-                    Jo bura laga wo unintentional tha, lekin galti meri hi hai.
-                </p>
-                <p>
-                    Teri feelings matter karti hai mujhe.<br>
-                    Aage se dhyan rakhunga, sununga better.
-                </p>
-                <p>
-                    Maaf kar de yaar... sach mein try kar raha hu improve karne ka.
-                </p>
-                <button class="btn" onclick="nextSection(6)">Maaf karegi? 🙏</button>
-            </div>
-        </div>
-
-        <div class="section" id="section6">
-            <div class="glass-card" style="padding: 40px 20px;">
-                <div class="gif-container">
-                    <img src="endlove.gif" alt="End" onerror="this.src='https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif'">
-                </div>
-                <h2>Main Wada Karta Hu...</h2>
-                <p style="font-size: 1.1rem; margin-top: 20px;">
-                    Zyada sununga,<br>
-                    samjhunga better,<br>
-                    kabhi hurt nahi karunga fir se.
-                </p>
-                <br>
-                <small>@smss1708 - Reply kar dena</small>
-            </div>
-        </div>
-
-        <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
-            🎵
-        </div>
-
-        <div class="modal-overlay" id="messageModal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeModal()">✖</button>
-                <h2 id="modalTitle">Title</h2>
-                <p class="modal-text" id="modalText">Message goes here...</p>
-            </div>
-        </div>
-
+    <div id="videoLayer">
+        <video id="vPlayer" playsinline src="video1.mp4"></video>
     </div>
 
     <script>
-        /* --- AUDIO LOGIC --- */
+        let step = 1;
         const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicBtn');
-        let isPlaying = false;
-        let musicStarted = false;
+        
+        // Stars + Floating Emojis
+        const starContainer = document.getElementById('stars-container');
+        const frag = document.createDocumentFragment();
+        
+        // Stars
+        for(let i=0; i<120; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            const size = Math.random() * 2.5 + 1 + 'px';
+            s.style.width = size; s.style.height = size;
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.top = Math.random() * 100 + 'vh';
+            s.style.setProperty('--dur', (Math.random() * 2.5 + 1) + 's');
+            frag.appendChild(s);
+        }
+        
+        // Floating emojis
+        const floatEmojis = ['☕', '🌸', '☀️', '💖', '🌺'];
+        for(let i=0; i<30; i++) {
+            const emoji = document.createElement('div');
+            emoji.className = 'floating-emojis';
+            emoji.textContent = floatEmojis[Math.floor(Math.random()*floatEmojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.top = '100vh';
+            emoji.style.animationDelay = Math.random() * 4 + 's';
+            frag.appendChild(emoji);
+        }
+        starContainer.appendChild(frag);
 
-        music.volume = 0.35;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicBtn.classList.add('paused');
-            } else {
-                music.play();
-                musicBtn.classList.remove('paused');
-            }
-            isPlaying = !isPlaying;
+        function startApp() { 
+            music.play().catch(() => {}); 
+            next(); 
         }
 
-        function ensureMusicPlays() {
-            if (!musicStarted) {
-                music.play().then(() => {
-                    isPlaying = true;
-                    musicStarted = true;
-                    musicBtn.classList.remove('paused');
-                }).catch(e => {});
+        function next() {
+            const current = document.getElementById('slide' + step);
+            const nextS = document.getElementById('slide' + (step + 1));
+            if(current) {
+                current.classList.remove('active');
+                setTimeout(() => current.style.display = 'none', 400);
+            }
+            if(nextS) {
+                step++;
+                nextS.style.display = 'flex';
+                void nextS.offsetWidth;
+                nextS.classList.add('active');
             }
         }
 
-        /* --- NAVIGATION --- */
-        function nextSection(sectionNumber) {
-            ensureMusicPlays();
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-            const target = document.getElementById('section' + sectionNumber);
-            if (target) {
-                target.classList.add('active');
-            }
-        }
-
-        /* --- MODAL MESSAGES --- */
-        const modal = document.getElementById('messageModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalText = document.getElementById('modalText');
-
-        const messages = {
-            regret: {
-                title: "Meri Galti 🙏",
-                text: "Urvi tune jo beizzati feel ki, wo meri taraf se galti thi. Kabhi intentional nahi tha, lekin phir bhi sorry."
-            },
-            care: {
-                title: "Teri Value 🤝",
-                text: "Tu mere liye important dost hai Urvi. Teri feelings ko ignore nahi kar sakta main."
-            },
-            promise: {
-                title: "Mera Wada 💪",
-                text: "Aage se dhyan rakhunga, sununga properly, hurt nahi karunga kabhi fir se."
-            }
+        // YES BUTTON
+        document.getElementById('yesBtn').onclick = () => {
+            setTimeout(next, 200);
         };
 
-        function openModal(type) {
-            const content = messages[type];
-            modalTitle.innerText = content.title;
-            modalText.innerText = content.text;
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        /* --- FLOATING EMOJIS --- */
-        function createEmoji() {
-            const emojis = ['🙏', '✨', '👍', '🤝'];
-            const emoji = document.createElement('div');
-            emoji.classList.add('emoji-float');
-            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        // NO BUTTON TRAP
+        function trapNo() {
+            document.getElementById('noBtn').style.display = 'none';
+            const container = document.getElementById('btnContainer');
             
-            emoji.style.left = Math.random() * 100 + "vw";
-            emoji.style.animationDuration = Math.random() * 2 + 3 + "s";
-            
-            document.getElementById('heartsContainer').appendChild(emoji);
-
-            setTimeout(() => {
-                emoji.remove();
-            }, 5000);
+            for(let i = 0; i < 5; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'glow-btn';
+                btn.innerHTML = 'YES! CALL ME ☕💖';
+                btn.onclick = () => setTimeout(next, 200);
+                container.appendChild(btn);
+            }
         }
+        document.getElementById('noBtn').onclick = trapNo;
 
-        setInterval(createEmoji, 400);
+        // Hold button logic
+        let hVal = 0, hInt;
+        const hBtn = document.getElementById('holdBtn'), hProg = document.getElementById('holdProgress'), pHeart = document.getElementById('pulseHeart');
+        
+        const startH = (e) => { 
+            e.preventDefault(); 
+            pHeart.style.transform = 'scale(1.6)';
+            hInt = setInterval(() => { 
+                hVal += 2.8; 
+                hProg.style.width = hVal + '%'; 
+                if(hVal >= 100) { clearInterval(hInt); next(); } 
+            }, 28); 
+        };
+        const endH = () => { 
+            clearInterval(hInt); 
+            hVal = 0; 
+            hProg.style.width = '0%'; 
+            pHeart.style.transform = 'scale(1)'; 
+        };
+        
+        hBtn.addEventListener('touchstart', startH);
+        hBtn.addEventListener('mousedown', startH);
+        window.addEventListener('touchend', endH);
+        window.addEventListener('mouseup', endH);
 
+        function playSurprise() {
+            music.pause();
+            const layer = document.getElementById('videoLayer');
+            layer.style.display = 'flex';
+            const v = document.getElementById('vPlayer');
+            v.play();
+            v.onended = () => location.reload();
+        }
     </script>
 </body>
-</html>
+    </html>
