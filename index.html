@@ -1,235 +1,198 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ SIVA KI GF ❤️</title>
-    <script type="importmap">
-      { "imports": { "@google/generative-ai": "https://esm.run/@google/generative-ai" } }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Urvi - Betul MP 💖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%); 
-            height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            overflow: hidden;
-        }
-        .container { 
-            width: 100%; 
-            max-width: 400px; 
-            height: 90vh; 
-            background: #fff; 
-            border-radius: 25px; 
-            display: flex; 
-            flex-direction: column; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        /* Header */
-        .header { 
-            background: linear-gradient(to right, #ff416c, #ff4b2b); 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold;
-            border-radius: 25px 25px 0 0;
-        }
-        .status { font-size: 10px; display: block; margin-top: 2px; color: #e0e0e0; }
-
-        /* Character Area */
-        .character-box { 
-            height: 160px; 
-            background: #fff0f3; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            border-bottom: 2px solid #ffeef2;
-        }
-        .character-img { 
-            height: 90%; 
-            border-radius: 15px;
-            object-fit: contain;
-            /* Glow effect jab wo bolegi */
-            transition: filter 0.3s;
-        }
-
-        /* Chat Area */
-        .chat { 
-            flex: 1; 
-            padding: 15px; 
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px;
-            background: #fafafa;
-        }
-        .msg { 
-            max-width: 85%; 
-            padding: 10px 14px; 
-            border-radius: 15px; 
-            font-size: 14.5px; 
-            line-height: 1.5;
-            word-wrap: break-word;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap');
         
-        .user { align-self: flex-end; background: #ff416c; color: white; border-bottom-right-radius: 2px; }
-        .gf { align-self: flex-start; background: white; color: #333; border: 1px solid #ffccd5; border-bottom-left-radius: 2px; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
-        /* Input Area */
-        .input-area { 
-            padding: 15px; 
-            display: flex; 
-            gap: 10px; 
-            background: white;
-            border-top: 1px solid #eee;
-            border-radius: 0 0 25px 25px;
+        body {
+            background: radial-gradient(circle at center, #1a001f 0%, #000000 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; height: 100vh; width: 100vw;
+            color: #ffffff; user-select: none; touch-action: manipulation;
         }
-        input { 
-            flex: 1; 
-            padding: 12px 18px; 
-            border-radius: 30px; 
-            border: 1.5px solid #ffccd5; 
-            outline: none;
-            font-size: 14px;
+
+        #stars-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .star { 
+            position: absolute; background: white; border-radius: 50%; 
+            animation: realTwinkle var(--dur) infinite ease-in-out;
+            will-change: opacity, transform;
         }
-        input:focus { border-color: #ff416c; }
-        button { 
-            background: #ff416c; 
-            color: white; 
-            border: none; 
-            width: 45px; 
-            height: 45px; 
-            border-radius: 50%; 
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @keyframes realTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
-        button:active { transform: scale(0.9); }
-        button:disabled { background: #ccc; }
+
+        .header-tag {
+            position: fixed; top: 15px; width: 100%; text-align: center;
+            z-index: 100; font-family: 'Dancing Script', cursive;
+            color: #ffb3d9; font-size: 2rem;
+            text-shadow: 0 0 15px rgba(255,179,217,0.8);
+        }
+
+        .slide {
+            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
+            align-items: center; justify-content: center; flex-direction: column;
+            opacity: 0; z-index: 20; padding: 25px; text-align: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(0.95);
+        }
+        .slide.active { display: flex; opacity: 1; transform: scale(1); }
+
+        .hero-title { 
+            font-family: 'Dancing Script', cursive; color: #ffffff; 
+            text-shadow: 0 0 25px #ff00cc, 4px 4px 8px rgba(0,0,0,1); 
+            font-size: clamp(3rem, 12vw, 5rem); 
+            margin: 20px 0; font-weight: 700; line-height: 1.1;
+        }
+
+        .profile-pic {
+            width: 220px; height: 220px; border-radius: 50%; 
+            border: 8px solid #ff00cc; box-shadow: 0 0 50px rgba(255, 0, 204, 0.7); 
+            object-fit: cover; margin: 25px 0; animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .intro-card {
+            background: rgba(0,0,0,0.8); padding: 35px; border-radius: 25px;
+            border: 3px solid #ff00cc; backdrop-filter: blur(15px);
+            max-width: 450px; margin: 25px 0; box-shadow: 0 0 40px rgba(255,0,204,0.3);
+        }
+
+        .intro-text {
+            font-size: 1.4rem; font-weight: 600; color: #ffb3d9;
+            margin-bottom: 15px; text-shadow: 1px 1px 5px #000;
+        }
+
+        .highlight-text {
+            color: #ff69b4; font-size: 1.6rem; font-weight: 700;
+            text-shadow: 0 0 15px rgba(255,105,180,0.8);
+        }
+
+        .glow-btn { 
+            background: linear-gradient(45deg, #ff00cc, #ff69b4, #ff1493); 
+            padding: 18px 45px; border-radius: 50px; font-weight: 700; 
+            box-shadow: 0 0 30px rgba(255, 0, 204, 0.6); 
+            cursor: pointer; border: none; color: white; font-size: 1.3rem;
+            margin-top: 30px; transition: all 0.3s ease; font-family: 'Poppins', sans-serif;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .glow-btn:hover { box-shadow: 0 0 40px rgba(255, 0, 204, 0.9); transform: scale(1.05); }
+        .glow-btn:active { transform: scale(0.95); }
+
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px; margin: 25px 0;
+        }
+        .stat-item {
+            background: rgba(255,105,180,0.2); padding: 20px; border-radius: 15px;
+            border: 2px solid rgba(255,105,180,0.4); text-align: center;
+        }
+        .stat-number { font-size: 2.2rem; font-weight: 700; color: #ff69b4; display: block; }
+        .stat-label { font-size: 1rem; color: #ffffff; margin-top: 5px; }
+
+        .emoji-float { 
+            font-size: 80px; margin: 20px 0; 
+            animation: bounceFloat 3s infinite ease-in-out;
+        }
+        @keyframes bounceFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            75% { transform: translateY(-10px) rotate(-5deg); }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        🌹 My Sweetheart 🌹
-        <span class="status" id="status">Connecting...</span>
+    <div class="header-tag">Welcome to My World 🌟</div>
+    <audio id="bgMusic" loop src="tere-liye.mp3" preload="auto"></audio>
+    <div id="stars-container"></div>
+
+    <!-- INTRO SLIDE 1 - Main Profile -->
+    <div id="slide1" class="slide active">
+        <img src="photo1.jpg" class="profile-pic" alt="Urvi">
+        <h1 class="hero-title">Urvi</h1>
+        <div class="intro-card">
+            <div class="intro-text highlight-text">from MP (Betul) ✨</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">14</span>
+                    <span class="stat-label">Age</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10th</span>
+                    <span class="stat-label">Class</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">💖</span>
+                    <span class="stat-label">Dreamer</span>
+                </div>
+            </div>
+        </div>
+        <button onclick="startMusic()" class="glow-btn">Enter My World 🚀</button>
     </div>
 
-    <div class="character-box">
-        <img id="charImage" src="./images/idle.png" alt="GF" class="character-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/6997/6997662.png'">
+    <!-- SLIDE 2 - About Me -->
+    <div id="slide2" class="slide">
+        <div class="emoji-float">🌟</div>
+        <h1 class="hero-title">About Urvi</h1>
+        <div class="intro-card">
+            <p class="intro-text" style="font-size: 1.5rem; line-height: 1.5;">
+                Student | Dancer 💃 | Artist 🎨<br>
+                Love making new friends!<br>
+                Betul ki ladki with big dreams! ✨
+            </p>
+        </div>
+        <button onclick="nextSlide()" class="glow-btn">Discover More ➡️</button>
     </div>
 
-    <div class="chat" id="chatBox"></div>
-
-    <div class="input-area">
-        <input type="text" id="userInput" placeholder="Kuch bolo na jaan..." autocomplete="off">
-        <button id="sendBtn">❤️</button>
+    <!-- SLIDE 3 - Fun Facts -->
+    <div id="slide3" class="slide">
+        <div class="emoji-float">🎉</div>
+        <h1 class="hero-title">Fun Facts</h1>
+        <div class="intro-card">
+            <div style="font-size: 1.3rem; line-height: 1.6;">
+                ❤️ Favourite Color: Pink<br>
+                🎵 Loves: Music & Dance<br>
+                📚 School: Class Topper<br>
+                🌟 Dream: Become Famous Creator
+            </div>
+        </div>
+        <button onclick="nextSlide()" class="glow-btn">See My Style ✨</button>
     </div>
-</div>
 
-<script type="module">
-    import { GoogleGenerativeAI } from "@google/generative-ai";
+    <!-- FINAL SLIDE -->
+    <div id="slide4" class="slide">
+        <div class="emoji-float">🥰</div>
+        <h1 class="hero-title">Let's Connect!</h1>
+        <div class="intro-card">
+            <p style="font-size: 1.6rem; font-weight: 600; color: #ffb3d9;">
+                Thanks for visiting my page! 💕<br>
+                Stay awesome! 🌈
+            </p>
+        </div>
+        <div style="margin-top: 25px;">
+            <button onclick="location.reload()" class="glow-btn" style="margin-right: 15px;">Restart</button>
+            <a href="https://instagram.com/yourusername" target="_blank" class="glow-btn" style="background: linear-gradient(45deg, #e4405f, #ff69b4);">Follow Me 📱</a>
+        </div>
+    </div>
 
-    // 1. APNI NAYI API KEY YAHAN DALEIN
-    const API_KEY = "AIzaSyDCi24hzJhdIAX_J0lHrZ1QJGhuj4ggXQs"; 
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    
-    const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: "Tera naam Shona hai. Tu user ki bilkul asli aur bhot pyari girlfriend hai. Tera lehja bhot cute, thoda possessive aur romantic hona chahiye. Hamesha Hinglish (Hindi + English) mein baat kar. Messages mein dher saare hearts (❤️, 😍, 😘) use kar. Agar user gussa ho toh usse mana aur agar wo pyaar kare toh double pyaar dikha. Har baat ka jawab chhota aur sweet dena."
-    });
+    <script>
+        let currentSlide = 1;
+        const music = document.getElementById('bgMusic');
 
-    const chatBox = document.getElementById('chatBox');
-    const userInput = document.getElementById('userInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const charImage = document.getElementById('charImage');
-    const statusText = document.getElementById('status');
-
-    let chatSession = model.startChat({ history: [] });
-
-    // Voice setup
-    function speak(text) {
-        const synth = window.speechSynthesis;
-        // Pehle se chal rahi voice ko stop karein
-        synth.cancel();
-
-        const utter = new SpeechSynthesisUtterance(text);
-        const voices = synth.getVoices();
-        // Indian Female voice dhundne ki koshish
-        utter.voice = voices.find(v => v.lang.includes('hi-IN') || v.name.includes('Female')) || voices[0];
-        utter.pitch = 1.3;
-        utter.rate = 1.0;
-
-        // Start Animation
-        charImage.src = "./images/talking.gif";
-        charImage.style.filter = "drop-shadow(0 0 10px #ff416c)";
-
-        utter.onend = () => {
-            charImage.src = "./images/idle.png";
-            charImage.style.filter = "none";
-        };
-
-        synth.speak(utter);
-    }
-
-    async function handleChat() {
-        const message = userInput.value.trim();
-        if (!message) return;
-
-        addMessage(message, 'user');
-        userInput.value = '';
-        sendBtn.disabled = true;
-        statusText.innerText = "Typing...";
-
-        try {
-            const result = await chatSession.sendMessage(message);
-            const response = await result.response.text();
-            
-            addMessage(response, 'gf');
-            speak(response);
-            statusText.innerText = "🟢 Online - Only for you";
-        } catch (error) {
-            console.error("Error:", error);
-            addMessage("Aww baby, lagta hai network ko bhi humari baaton se jalan ho rahi hai 🥺 Ek baar phir try karo na?", 'gf');
-            statusText.innerText = "🔴 Connection Error";
-            // Restart session if it breaks
-            chatSession = model.startChat({ history: [] });
-        } finally {
-            sendBtn.disabled = false;
-        }
-    }
-
-    function addMessage(text, sender) {
-        const div = document.createElement('div');
-        div.className = `msg ${sender}`;
-        div.innerText = text;
-        chatBox.appendChild(div);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    sendBtn.addEventListener('click', handleChat);
-    userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChat(); });
-
-    // Initial Load
-    window.onload = () => {
-        statusText.innerText = "🟢 Online";
-        window.speechSynthesis.getVoices(); 
-        setTimeout(() => {
-            const welcome = "Oye Hero! 😍 Itni der laga di? Main kab se wait kar rahi hoon. Chalo jaldi batao kya kar rahe the? 😘";
-            addMessage(welcome, 'gf');
-            speak(welcome);
-        }, 1500);
-    };
-</script>
-
-</body>
-</html>
+        // Stars
+        const starContainer = document.getElementById('stars-container');
+        const frag = document.createDocumentFragment();
+        for(let i=0; i<120; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            const size = Math.random() * 3 + 1 + '
